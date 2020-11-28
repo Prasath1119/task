@@ -1,0 +1,113 @@
+<section class="section-padding" *ngIf="todoArray.length == 0 && !addtaskTemplate">
+	<div class="container">
+		<div class="text-center">
+			<h2 class="font-weight-bold text-dark pb-2">Todo App</h2>
+		</div>
+		<div class="card">
+			<div class="card-header">
+				<div class="row">
+					<div class="col-md-11">
+						<form autocomplete="off">
+							<div class="form-group">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="fa fa-search"></i></span>
+									</div>
+									<input type="text" class="form-control" placeholder="Search" maxlength="50">
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="col-md-1">
+						<a class="plus-icons float-right"><i class="fa fa-plus" (click)="addTask()"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+
+			</div>
+			<div class="card-footer">
+				<p>Total Notes 0</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section-padding" *ngIf="todoArray.length > 0 && !addtaskTemplate">
+	<div class="container">
+		<div class="text-center">
+			<h2 class="font-weight-bold text-dark pb-2">Todo App</h2>
+		</div>
+		<div class="card">
+			<div class="card-header">
+				<div class="row">
+					<div class="col-md-11">
+						<form autocomplete="off">
+							<div class="form-group">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="fa fa-search"></i></span>
+									</div>
+									<input type="text" [(ngModel)]="searchtask"   class="form-control" placeholder="Search" maxlength="50" [ngModelOptions]="{standalone: true}">
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="col-md-1">
+						<a class="plus-icons float-right" (click)="addTask()"><i class="fa fa-plus"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="details mb-3" *ngFor="let res of todoArray | searchString: searchtask; let i = index">
+					<div class="row">
+						<div class="col-md-10">
+							<div class="details-border">
+								<p class="pl-2 pt-2">{{res}}</p>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<a class="delete-icons float-right" (click)="deleteTask(res)"><i class="fa fa-trash"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer">
+				<p>Total Notes {{todoArray.length}}</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section-padding" *ngIf="addtaskTemplate">
+	<div class="container">
+		<div class="text-center">
+			<h2 class="font-weight-bold text-dark pb-2">Todo App</h2>
+		</div>
+		<div class="card">
+			<div class="card-header">
+				<div class="row">
+					<div class="col-md-11">
+						<a class="previous-icons float-left" (click)="backBtn()"><i class="fa fa-arrow-left"></i></a>
+					</div>
+					<div class="col-md-1">
+						<a class="save-icons float-right" (click)="addTodo(value)"><i class="fa fa-save"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="content">
+                   <textarea class="form-control" [(ngModel)]="value"></textarea>
+				</div>
+			</div>
+			<div class="card-footer">
+				<p>Total Notes 0</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+
